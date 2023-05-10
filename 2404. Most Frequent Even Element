@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int mostFrequentEven(vector<int>& nums) {
+        unordered_map<int, int> freq;
+        int point = 0;
+        int key = INT_MAX; // initialize key with maximum integer value
+        for(int i = 0; i < nums.size(); i++) {
+            freq[nums[i]]++;
+        }
+        for(int i = 0; i < nums.size(); i++) {
+            int a = freq[nums[i]];
+            if(nums[i] % 2 == 0) {
+                if(a > point) {
+                    point = a;
+                    key = nums[i];
+                } else if(a == point && nums[i] < key) {
+                    key = nums[i];
+                }
+            }
+        }
+        if(point > 0) {
+            return key;
+        }
+        return -1;
+    }
+};
